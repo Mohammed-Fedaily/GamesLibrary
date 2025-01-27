@@ -1,3 +1,8 @@
+package games;
+import board.BoardGame;
+import board.Cell;
+import players.Player;
+import ui.View;
 
 public class TicTacToe extends BoardGame {
     private static final int SIZE = 3;

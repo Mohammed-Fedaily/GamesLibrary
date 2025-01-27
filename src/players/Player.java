@@ -1,3 +1,7 @@
+package players;
+
+import board.Cell;
+
 public abstract class Player {
     protected String representation;
 

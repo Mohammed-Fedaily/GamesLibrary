@@ -1,3 +1,8 @@
+package board;
+import ui.View;
+import players.Player;
+
+
 public abstract class BoardGame {
     protected Cell[][] board;
     protected Player[] players;

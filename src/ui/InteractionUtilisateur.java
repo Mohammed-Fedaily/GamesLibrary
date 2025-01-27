@@ -1,4 +1,10 @@
+package ui;
+
 import java.util.Scanner;
+import players.Player;
+import players.HumanPlayer;
+import players.ArtificialPlayer;
+
 
 public class InteractionUtilisateur {
     private final Scanner scanner;
