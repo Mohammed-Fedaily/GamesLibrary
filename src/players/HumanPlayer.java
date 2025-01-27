@@ -1,4 +1,7 @@
-import java.util.Scanner;
+package players;
+import board.Cell;
+import ui.InteractionUtilisateur;
+import ui.View;
 
 public class HumanPlayer extends Player {
     private final InteractionUtilisateur interaction;

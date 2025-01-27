@@ -1,3 +1,8 @@
+package ui;
+import board.Cell;
+import players.Player;
+
+
 public class View {
     public void displayBoard(Cell[][] board) {
         int rows = board.length;
@@ -45,8 +50,8 @@ public class View {
 
     public void displayGameSelectionMenu() {
         System.out.println("Choose your game:");
-        System.out.println("1. TicTacToe");
-        System.out.println("2. Gomoku");
+        System.out.println("1. games.TicTacToe");
+        System.out.println("2. games.Gomoku");
         System.out.println("3. Connect 4");
 
     }

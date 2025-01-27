@@ -1,3 +1,9 @@
+package games;
+import board.BoardGame;
+import board.Cell;
+import players.Player;
+import ui.View;
+
 public class ConnectFour extends BoardGame {
     private static final int ROWS = 6;
     private static final int COLS = 7;

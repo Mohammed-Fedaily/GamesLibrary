@@ -1,3 +1,9 @@
+package games;
+import board.BoardGame;
+import board.Cell;
+import players.Player;
+import ui.View;
+
 public class Gomoku extends BoardGame {
     private static final int SIZE = 15;
     private static final int WIN_COUNT = 5;
