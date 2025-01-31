@@ -8,16 +8,22 @@ public class ConsoleGameView implements GameView {
     @Override
     public void displayBoard(Cell[][] board) {
         clearScreen();
-        printColumnNumbers(board[0].length);
+
+        System.out.print("     ");
+        for (int i = 1; i <= board[0].length; i++) {
+            System.out.printf("%-5d", i);
+        }
+        System.out.println();
 
         for (int i = 0; i < board.length; i++) {
-            System.out.print((i + 1) + " ");
+            System.out.printf("%-2d", (i + 1));
+
             for (int j = 0; j < board[i].length; j++) {
-                System.out.print(board[i][j].getRepresentation());
+                System.out.printf("| %-2s", board[i][j].getRepresentation().replace("|", ""));
             }
             System.out.println("|");
         }
-        printBoardBorder(board[0].length);
+        System.out.println(BORDER);
     }
 
     @Override
@@ -59,12 +65,6 @@ public class ConsoleGameView implements GameView {
     @Override
     public void getMoveInput() {
         System.out.print("Enter row and column ");
-    }
-
-
-
-    private void printBoardBorder(int width) {
-        System.out.println(BORDER);
     }
 
     private void printColumnNumbers(int columns) {
