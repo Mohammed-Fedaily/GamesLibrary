@@ -1,15 +1,15 @@
 package players;
 
 import board.Cell;
-import ui.View;
-
+import View.GameView;
 import java.util.Random;
+
 
 public class ArtificialPlayer extends Player {
     private final Random random;
-    private final View view;
+    private final GameView view;
 
-    public ArtificialPlayer(String symbol, View view) {
+    public ArtificialPlayer(String symbol, GameView view) {
         super(symbol);
         this.random = new Random();
         this.view = view;
@@ -17,30 +17,9 @@ public class ArtificialPlayer extends Player {
 
     @Override
     public int[] getMove(Cell[][] board) {
-        int[] coordinates = new int[2];
-        boolean validMove = false;
-
-        while (!validMove) {
-            coordinates[0] = random.nextInt(board.length);
-            coordinates[1] = random.nextInt(board.length);
-
-            if (board[coordinates[0]][coordinates[1]].isEmpty()) {
-                validMove = true;
-            }
-        }
-
-        view.displayComMove(coordinates[0], coordinates[1]);
-        return coordinates;
+        int[] move = new int[2];
+        move[0] = random.nextInt(board.length);
+        move[1] = random.nextInt(board[0].length);
+        return move;
     }
-
-    @Override
-    public int getColumnMove(Cell[][] board) {
-        int col;
-        do {
-            col = random.nextInt(board[0].length);
-        } while (!board[0][col].isEmpty());
-        view.displayComColumnMove(col);
-        return col;
-    }
-
 }

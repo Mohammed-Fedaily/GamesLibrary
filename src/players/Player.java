@@ -2,6 +2,7 @@ package players;
 
 import board.Cell;
 
+
 public abstract class Player {
     protected String representation;
 
@@ -13,8 +14,5 @@ public abstract class Player {
         return representation;
     }
 
-
     public abstract int[] getMove(Cell[][] board);
-
-    public abstract int getColumnMove(Cell[][] board);
 }
