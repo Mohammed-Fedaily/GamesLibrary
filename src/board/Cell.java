@@ -14,6 +14,7 @@ public class Cell {
 
     public void setRepresentation(String representation) {
         this.representation = representation;
+
     }
 
     public boolean isEmpty() {
