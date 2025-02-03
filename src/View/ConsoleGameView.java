@@ -3,27 +3,26 @@ import board.Cell;
 import players.Player;
 
 public class ConsoleGameView implements GameView {
-    private static final String BORDER = "-".repeat(31);
-
     @Override
     public void displayBoard(Cell[][] board) {
         clearScreen();
+        int boardSize = board[0].length;
+        String border = "-".repeat(boardSize * 4 + 4); // Adjust border based on board size
 
         System.out.print("     ");
-        for (int i = 1; i <= board[0].length; i++) {
-            System.out.printf("%-5d", i);
+        for (int i = 1; i <= boardSize; i++) {
+            System.out.printf("%-4d", i);
         }
         System.out.println();
 
         for (int i = 0; i < board.length; i++) {
-            System.out.printf("%-2d", (i + 1));
-
+            System.out.printf("%-3d ", (i + 1));
             for (int j = 0; j < board[i].length; j++) {
                 System.out.printf("| %-2s", board[i][j].getRepresentation().replace("|", ""));
             }
             System.out.println("|");
         }
-        System.out.println(BORDER);
+        System.out.println(border);
     }
 
     @Override
@@ -48,18 +47,20 @@ public class ConsoleGameView implements GameView {
 
     @Override
     public void displayGameModeMenu() {
-        System.out.println("Select game mode:");
-        System.out.println("1. Human vs Human");
-        System.out.println("2. Human vs Computer");
-        System.out.println("3. Computer vs Computer");
+        displayMenu("Select game mode:", new String[]{
+                "Human vs Human",
+                "Human vs Computer",
+                "Computer vs Computer"
+        });
     }
 
     @Override
     public void displayGameSelectionMenu() {
-        System.out.println("Select game:");
-        System.out.println("1. TicTacToe");
-        System.out.println("2. Gomoku");
-        System.out.println("3. Connect Four");
+        displayMenu("Select game:", new String[]{
+                "TicTacToe",
+                "Gomoku",
+                "Connect Four"
+        });
     }
 
     @Override
@@ -67,12 +68,11 @@ public class ConsoleGameView implements GameView {
         System.out.print("Enter row and column ");
     }
 
-    private void printColumnNumbers(int columns) {
-        System.out.print("  ");
-        for (int i = 1; i <= columns; i++) {
-            System.out.print("   " + i);
+    private void displayMenu(String title, String[] options) {
+        System.out.println(title);
+        for (int i = 0; i < options.length; i++) {
+            System.out.printf("%d. %s%n", i + 1, options[i]);
         }
-        System.out.println();
     }
 
     private void clearScreen() {

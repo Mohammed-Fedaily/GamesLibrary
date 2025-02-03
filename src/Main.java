@@ -1,13 +1,7 @@
 
 import Controller.GomokuController;
 import Model.GomokuModel;
-import board.BoardGame;
-import games.ConnectFour;
-import games.Gomoku;
-import games.TicTacToe;
 import players.Player;
-import ui.InteractionUtilisateur;
-import ui.View;
 import View.GameView;
 import View.ConsoleGameView;
 import Model.TicTacToeModel;
@@ -51,32 +45,56 @@ public class Main {
 //    }
 
         GameView view = new ConsoleGameView();
-        view.displayGameModeMenu();
         Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
 
-        Player[] players = new Player[2];
-        switch (choice) {
+        view.displayGameSelectionMenu();
+        int gameChoice = scanner.nextInt();
+
+        view.displayGameModeMenu();
+        int modeChoice = scanner.nextInt();
+
+        Player[] players = createPlayers(modeChoice, view);
+        if (players == null) return;
+
+        switch (gameChoice) {
             case 1:
-                players[0] = new HumanPlayer("X", view);
-                players[1] = new HumanPlayer("O", view);
+                TicTacToeModel ticTacToeModel = new TicTacToeModel(players);
+                TicTacToeController ticTacToeController = new TicTacToeController(ticTacToeModel, view);
+                ticTacToeController.startGame();
                 break;
             case 2:
-                players[0] = new HumanPlayer("X", view);
-                players[1] = new ArtificialPlayer("O", view);
+                GomokuModel gomokuModel = new GomokuModel(players);
+                GomokuController gomokuController = new GomokuController(gomokuModel, view);
+                gomokuController.startGame();
                 break;
             case 3:
-                players[0] = new ArtificialPlayer("X", view);
-                players[1] = new ArtificialPlayer("O", view);
+                System.out.println("Connect Four not yet implemented!");
                 break;
             default:
-                System.out.println("Invalid choice!");
-                return;
+                System.out.println("Invalid game choice!");
         }
-
-        GomokuModel model = new GomokuModel(players);
-        GomokuController controller = new GomokuController(model, view);
-        controller.startGame();
-
     }
+
+    private static Player[] createPlayers(int modeChoice, GameView view) {
+        Player[] players = new Player[2];
+        switch (modeChoice) {
+            case 1:
+                players[0] = new HumanPlayer("X|", view);
+                players[1] = new HumanPlayer("O|", view);
+                break;
+            case 2:
+                players[0] = new HumanPlayer("X|", view);
+                players[1] = new ArtificialPlayer("O|", view);
+                break;
+            case 3:
+                players[0] = new ArtificialPlayer("X|", view);
+                players[1] = new ArtificialPlayer("O|", view);
+                break;
+            default:
+                System.out.println("Invalid mode choice!");
+                return null;
+        }
+        return players;
+    }
+
 }

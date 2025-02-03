@@ -1,23 +1,20 @@
 package Controller;
 
-import Model.BoardGameModel;
+import Model.GomokuModel;
 import View.GameView;
 
 public class GomokuController extends GameController {
-
-    public GomokuController(BoardGameModel model, GameView view) {
+    public GomokuController(GomokuModel model, GameView view) {
         super(model, view);
     }
 
     @Override
-    protected void handleGameSpecificRules(int row, int col) {
-        if (!model.isWinningMove(row, col)) {
-            model.switchPlayer();
-        }
+    protected void initializePlayers() {
+        view.displayGameModeMenu();
     }
+}
 
 //    @Override
 //    protected void initializePlayers() {
 //        view.displayGameModeMenu();
 //    }
-}
